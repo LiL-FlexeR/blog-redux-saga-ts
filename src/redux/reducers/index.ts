@@ -1,7 +1,6 @@
-import { IRootReducer } from "./state";
-import { AuthReducer } from "./auth";
 import { combineReducers } from "redux";
+import { AuthReducer } from "./auth";
 
-export const rootReducer = combineReducers<IRootReducer>({
-  auth: AuthReducer as any,
+export const rootReducer = combineReducers({
+  AuthReducer,
 });

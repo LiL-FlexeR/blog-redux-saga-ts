@@ -2,7 +2,7 @@ export interface IAuth {
   token: string;
 }
 
-export interface ILogin {
+export interface ISignUp {
   _id: string;
   name: string;
   email: string;

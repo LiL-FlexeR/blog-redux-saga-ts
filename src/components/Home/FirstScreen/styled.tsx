@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("laptop")]: {
       fontSize: "50px",
     },
+    [theme.breakpoints.up("tablet")]: {
+      fontSize: "30px",
+    },
   },
   button: {
     backgroundColor: theme.palette.primary.dark,

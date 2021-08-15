@@ -1,5 +1,5 @@
-import { all, put } from "@redux-saga/core/effects";
+import sagaWatcher from "./signIn";
 
 export default function* rootSaga() {
-  yield all([]);
+  yield sagaWatcher();
 }

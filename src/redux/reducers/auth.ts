@@ -1,12 +1,14 @@
-import { AuthActions } from "./../actions/auth";
-import { IAuth } from "./../../types/auth";
 import { handleActions } from "redux-actions";
+import { AuthActions } from "../actions";
 
-const initialState = null;
+const initialState = {
+  currentUser: <any>{},
+};
 
-export const AuthReducer = handleActions<IAuth | null, IAuth>(
+export const AuthReducer = handleActions(
   {
-    [AuthActions.Type.SET_AUTH]: (state, action) => action.payload,
+    [AuthActions.Type.SET_USER]: (state, action) =>
+      (state.currentUser = { ...state, currentUser: action.payload }),
   },
   initialState
 );

@@ -3,7 +3,7 @@ import App from "./App";
 import { CssBaseline, ThemeProvider } from "@material-ui/core";
 import { theme } from "./config/theme";
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import store from "./redux/store";
 
 ReactDOM.render(
   <Provider store={store}>

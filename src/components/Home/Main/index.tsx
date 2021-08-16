@@ -1,17 +1,21 @@
 import { CircularProgress, Grid, Typography } from "@material-ui/core";
 import React from "react";
-import { useFetchPosts } from "../../../hooks/useFetchPosts";
 import Post from "./Post";
 import { useStyles } from "./styled";
 import { Waypoint } from "react-waypoint";
 import { useFilter } from "../../../hooks/useFilter";
 import { StoreContext } from "../../../utils/context";
 import { IPost } from "../../../types/posts";
+import { useQuery } from "../../../hooks/useQuery";
 
 const Index: React.FC = () => {
-  const { data, loading, loadMoreHandler } = useFetchPosts<IPost[]>();
+  const [fetchData, loading, data] = useQuery<IPost[]>();
   const { filterValue } = React.useContext(StoreContext);
   const filteredPosts = useFilter(data, filterValue);
+
+  React.useEffect(() => {
+    fetchData("/posts");
+  }, []);
 
   const classes = useStyles();
 
@@ -30,34 +34,18 @@ const Index: React.FC = () => {
             (
               { title, postedBy, likes, description, image, _id, dateCreated },
               index
-            ) =>
-              index !== data.length - 1 ? (
-                <Post
-                  title={title}
-                  postedBy={postedBy}
-                  likes={likes}
-                  description={description}
-                  image={image}
-                  _id={_id}
-                  key={_id}
-                  dateCreated={dateCreated}
-                />
-              ) : (
-                <Waypoint key={_id} onEnter={() => loadMoreHandler()}>
-                  <div key={_id}>
-                    <Post
-                      title={title}
-                      postedBy={postedBy}
-                      likes={likes}
-                      description={description}
-                      image={image}
-                      _id={_id}
-                      key={_id}
-                      dateCreated={dateCreated}
-                    />
-                  </div>
-                </Waypoint>
-              )
+            ) => (
+              <Post
+                title={title}
+                postedBy={postedBy}
+                likes={likes}
+                description={description}
+                image={image}
+                _id={_id}
+                key={_id}
+                dateCreated={dateCreated}
+              />
+            )
           )}
         </Grid>
       ) : null}

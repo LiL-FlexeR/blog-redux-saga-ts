@@ -3,12 +3,12 @@ import { IPost } from "./../types/posts";
 import React from "react";
 import instance from "../utils/instance";
 
-export const useQuery = <T>(url: string) => {
+export const useQuery = <T>(): [(url: string) => void, boolean, T?] => {
   const [data, setData] = React.useState<T>();
   const [error, setError] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
 
-  const fetchPosts = async () => {
+  const fetchData = async (url: string) => {
     setLoading(true);
     try {
       await instance.get(url).then((res) => setData(res.data));
@@ -19,14 +19,5 @@ export const useQuery = <T>(url: string) => {
     }
   };
 
-  React.useEffect(() => {
-    fetchPosts();
-  }, []);
-
-  return {
-    data,
-    error,
-    loading,
-    setData,
-  };
+  return [fetchData, loading, data];
 };

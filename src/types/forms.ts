@@ -7,7 +7,10 @@ export interface IFields {
 export interface IForm {
   type: string;
   title: string;
-  button: string;
   id: string;
-  fields: IFields[];
+}
+
+export interface ISignIn {
+  email: string;
+  password: string;
 }

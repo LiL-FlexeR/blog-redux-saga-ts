@@ -33,7 +33,7 @@ export const routes: IRoute[] = [
   },
   {
     type: "public",
-    path: "/post/:id",
+    path: "/posts/:id",
     component: Post,
     exact: true,
   },

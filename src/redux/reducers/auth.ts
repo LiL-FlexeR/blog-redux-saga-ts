@@ -1,14 +1,13 @@
 import { handleActions } from "redux-actions";
 import { AuthActions } from "../actions";
 
-const initialState = {
-  currentUser: <any>{},
-};
+const initialState = {};
 
 export const AuthReducer = handleActions(
   {
     [AuthActions.Type.SET_USER]: (state, action) =>
-      (state.currentUser = { ...state, currentUser: action.payload }),
+      (state = { ...state, ...action.payload }),
+    [AuthActions.Type.RESET_USER]: (state) => (state = {}),
   },
   initialState
 );

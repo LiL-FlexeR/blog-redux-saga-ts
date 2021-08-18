@@ -1,6 +1,6 @@
 import { IPost } from "../types/posts";
 
-export const useFilter = (posts: IPost[] | undefined, search: string) => {
+export const useFilter = (posts: IPost[] | null, search: string) => {
   if (!search) {
     return posts;
   }

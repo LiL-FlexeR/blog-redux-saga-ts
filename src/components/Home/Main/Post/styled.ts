@@ -13,6 +13,7 @@ export const useStyles = makeStyles((theme) => ({
   text: {
     textAlign: "center",
     marginTop: "2vh",
+    wordBreak: "break-word",
   },
   date: {
     color: "#c2c2c2",

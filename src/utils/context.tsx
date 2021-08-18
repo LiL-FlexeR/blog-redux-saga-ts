@@ -12,6 +12,8 @@ interface StoreContextInterface {
   hideSignUpForm: () => void;
   filterValue: string;
   setFilter: (val: string) => void;
+  color: string;
+  colorSetter: (val: string) => void;
 }
 
 const initialValues = {
@@ -26,6 +28,8 @@ const initialValues = {
   hideSignUpForm: () => {},
   filterValue: "",
   setFilter: () => {},
+  color: "",
+  colorSetter: () => {},
 };
 
 export const StoreContext =
@@ -47,6 +51,9 @@ export const StoreProvider: React.FC = (props) => {
   const [filterValue, setFilterValue] = React.useState<string>("");
   const setFilter = React.useCallback((value) => setFilterValue(value), []);
 
+  const [color, setColor] = React.useState<string>("");
+  const colorSetter = React.useCallback((value: string) => setColor(value), []);
+
   return (
     <StoreContext.Provider
       value={{
@@ -61,6 +68,8 @@ export const StoreProvider: React.FC = (props) => {
         hideSignUpForm,
         filterValue,
         setFilter,
+        color,
+        colorSetter,
       }}
       {...props}
     />

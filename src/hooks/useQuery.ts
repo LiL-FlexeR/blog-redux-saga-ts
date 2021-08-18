@@ -1,23 +1,23 @@
 /* eslint-disable */
-import { IPost } from "./../types/posts";
 import React from "react";
 import instance from "../utils/instance";
 
-export const useQuery = <T>(): [(url: string) => void, boolean, T?] => {
-  const [data, setData] = React.useState<T>();
+export const useQuery = <T>() => {
+  const [data, setData] = React.useState<T | null>(null);
   const [error, setError] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
+  const dataSetter = React.useCallback((value: any) => setData(value), []);
 
   const fetchData = async (url: string) => {
     setLoading(true);
     try {
       await instance.get(url).then((res) => setData(res.data));
-      setLoading(false);
       setError(false);
+      setLoading(false);
     } catch (error) {
       setError(true);
     }
   };
 
-  return [fetchData, loading, data];
+  return { fetchData, loading, data, dataSetter };
 };

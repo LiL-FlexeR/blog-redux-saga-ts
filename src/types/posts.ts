@@ -2,8 +2,9 @@ export interface IPost {
   _id: string;
   title: string;
   description: string;
-  likes: [];
+  likes: string[];
   image: string;
+  fullText: string;
   postedBy: string;
   dateCreated: string;
 }

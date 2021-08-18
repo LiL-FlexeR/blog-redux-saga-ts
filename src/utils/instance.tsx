@@ -1,8 +1,13 @@
 import axios from "axios";
 import toast from "../components/Snackbar";
 
+const token = localStorage.getItem("token");
+
 const instance = axios.create({
   baseURL: "https://nodejs-test-api-blog.herokuapp.com/api/v1",
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
 });
 
 instance.interceptors.request.use((req) => {

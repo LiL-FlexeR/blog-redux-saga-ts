@@ -11,6 +11,7 @@ import { scroller } from "react-scroll";
 import React from "react";
 import { DebounceInput } from "react-debounce-input";
 import { StoreContext } from "../../utils/context";
+import { RootState } from "../../types/user";
 
 const SearchTextField = (props: any) => {
   return (
@@ -29,9 +30,8 @@ const SearchTextField = (props: any) => {
 };
 
 const Header = () => {
-  const currentUser = useSelector((state: RootStateOrAny) => {
-    return state.currentUser;
-  });
+  const selectCurrentUser = (state: RootState) => state.currentUser;
+  const currentUser = useSelector(selectCurrentUser);
   const classes = useStyles();
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");

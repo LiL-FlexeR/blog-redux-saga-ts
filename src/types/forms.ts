@@ -11,6 +11,7 @@ export interface IForm {
 }
 
 export interface ISignIn {
+  _id: any;
   email: string;
   password: string;
 }

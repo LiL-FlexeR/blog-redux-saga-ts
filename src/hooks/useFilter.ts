@@ -1,7 +1,7 @@
 import { IPost } from "../types/posts";
 
 export const useFilter = (posts: IPost[] | null, search: string) => {
-  if (!search) {
+  if (search) {
     return posts;
   }
 

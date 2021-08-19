@@ -1,24 +1,32 @@
 /* eslint-disable */
-import { CircularProgress, Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import React from "react";
 import Post from "./Post";
 import { useStyles } from "./styled";
 import { Waypoint } from "react-waypoint";
 import { useFilter } from "../../../hooks/useFilter";
 import { StoreContext } from "../../../utils/context";
-import { IPost } from "../../../types/posts";
 import { usePosts } from "../../../hooks/usePosts";
+import Skelet from "./Skelet";
+import { IPost } from "../../../types/posts";
 
 const Index: React.FC = () => {
   const { fetchData, loading, data, loadingMorePosts } = usePosts();
+  const [posts, setPosts] = React.useState<IPost[] | null>(null);
   const { filterValue } = React.useContext(StoreContext);
-  const filteredPosts = useFilter(data, filterValue);
+  const filteredPosts = useFilter(posts, filterValue);
 
   React.useEffect(() => {
     fetchData("/posts");
   }, []);
 
+  React.useEffect(() => {
+    setPosts(data);
+  }, [, data]);
+
   const classes = useStyles();
+
+  const loadArr = [1, 2, 3, 4];
 
   return (
     <Grid
@@ -29,7 +37,7 @@ const Index: React.FC = () => {
       className={`posts-container ${classes.wrapper}`}
       spacing={2}
     >
-      {loading ? <CircularProgress size="100px" /> : null}
+      {loading ? <Skelet loadArr={loadArr} /> : null}
       {!loading ? (
         <Typography variant="h3" style={{ width: "100%" }}>
           Latest Episodes
@@ -62,6 +70,7 @@ const Index: React.FC = () => {
                   key={_id}
                   fullText={fullText}
                   dateCreated={dateCreated}
+                  data={data}
                 />
               ) : (
                 <Waypoint key={_id} onEnter={() => loadingMorePosts()}>

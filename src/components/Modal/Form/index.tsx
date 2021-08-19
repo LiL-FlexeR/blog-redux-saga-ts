@@ -1,8 +1,11 @@
 import { DialogTitle, Grid } from "@material-ui/core";
 import React from "react";
 import { IForm } from "../../../types/forms";
+import PostCreate from "./PostCreate";
+import PostEdit from "./PostEdit";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import UserEdit from "./UserEdit";
 
 const Index: React.FC<IForm> = ({ title, type }) => {
   return (
@@ -13,7 +16,17 @@ const Index: React.FC<IForm> = ({ title, type }) => {
       className="sign-up-form"
     >
       <DialogTitle>{title}</DialogTitle>
-      {type === "signIn" ? <SignIn /> : <SignUp />}
+      {type === "signIn" ? (
+        <SignIn />
+      ) : type === "signUp" ? (
+        <SignUp />
+      ) : type === "edit" ? (
+        <UserEdit />
+      ) : type === "create" ? (
+        <PostCreate />
+      ) : type === "editPost" ? (
+        <PostEdit />
+      ) : null}
     </Grid>
   );
 };

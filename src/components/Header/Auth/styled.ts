@@ -5,6 +5,7 @@ const useStyles = makeStyles((theme) => ({
   },
   btn: {
     color: "#fff",
+    textDecoration: "none",
   },
 }));
 

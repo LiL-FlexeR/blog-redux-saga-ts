@@ -1,3 +1,4 @@
+import { IPostData } from "./posts";
 export interface IAuth {
   token: string;
 }
@@ -18,7 +19,15 @@ export interface IToken {
   token: string;
 }
 
+export interface IPatchUser {
+  name: string;
+}
+
+export interface IUserId {
+  userId: string;
+}
+
 export interface IAction {
   type: string;
-  payload: IToken | ILoginData;
+  payload: IToken | ILoginData | IPatchUser | IPostData | IUserId;
 }

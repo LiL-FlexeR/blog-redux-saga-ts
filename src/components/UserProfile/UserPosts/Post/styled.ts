@@ -6,9 +6,10 @@ export const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   card: {
-    height: "50vh",
+    height: "55vh",
     overflow: "hidden",
     position: "relative",
+    backgroundColor: "#f5f5f5",
   },
   text: {
     textAlign: "center",
@@ -30,5 +31,22 @@ export const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: 40,
     bottom: 0,
+  },
+  buttonsContainer: {
+    margin: "2vh auto",
+  },
+  deleteButton: {
+    backgroundColor: theme.palette.error.main,
+    color: "#fff",
+    "&:hover": {
+      backgroundColor: theme.palette.error.dark,
+    },
+  },
+  editButton: {
+    backgroundColor: theme.palette.warning.main,
+    color: "#fff",
+    "&:hover": {
+      backgroundColor: theme.palette.warning.dark,
+    },
   },
 }));

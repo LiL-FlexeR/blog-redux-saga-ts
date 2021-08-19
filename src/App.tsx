@@ -11,8 +11,8 @@ function App() {
   return (
     <div className="App">
       <StoreProvider>
-        <Header />
         <Router>
+          <Header />
           <Switch>
             {routes.map(({ component, exact, path, type }) => {
               if (type === "private") {
@@ -37,8 +37,8 @@ function App() {
               }
             })}
           </Switch>
+          <Modal />
         </Router>
-        <Modal />
       </StoreProvider>
     </div>
   );

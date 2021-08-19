@@ -5,7 +5,7 @@ import useStyles from "./styled";
 import UnauthButtons from "./UnAuth";
 import SearchIcon from "@material-ui/icons/SearchRounded";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AuthActions } from "../../redux/actions";
 import { scroller } from "react-scroll";
 import React from "react";

@@ -7,11 +7,11 @@ export interface IPost {
   fullText: string;
   postedBy: string;
   dateCreated: string;
+  data?: IPost[] | null;
 }
 
 export interface IPostData {
-  data: [];
-  error: boolean;
-  loading: boolean;
-  setData: () => void;
+  title: string;
+  description: string;
+  fullText: string;
 }

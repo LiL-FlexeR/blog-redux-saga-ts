@@ -14,6 +14,17 @@ interface StoreContextInterface {
   setFilter: (val: string) => void;
   color: string;
   colorSetter: (val: string) => void;
+  editForm: boolean;
+  showEditForm: () => void;
+  hideEditForm: () => void;
+  createForm: boolean;
+  showCreateForm: () => void;
+  hideCreateForm: () => void;
+  editPostForm: boolean;
+  showEditPostForm: () => void;
+  hideEditPostForm: () => void;
+  post: any;
+  postSetter: (val: any) => void;
 }
 
 const initialValues = {
@@ -30,6 +41,17 @@ const initialValues = {
   setFilter: () => {},
   color: "",
   colorSetter: () => {},
+  editForm: false,
+  showEditForm: () => {},
+  hideEditForm: () => {},
+  createForm: false,
+  showCreateForm: () => {},
+  hideCreateForm: () => {},
+  editPostForm: false,
+  showEditPostForm: () => {},
+  hideEditPostForm: () => {},
+  post: {},
+  postSetter: () => {},
 };
 
 export const StoreContext =
@@ -48,11 +70,26 @@ export const StoreProvider: React.FC = (props) => {
   const showSignInForm = React.useCallback(() => setSignIn(true), []);
   const hideSignInForm = React.useCallback(() => setSignIn(false), []);
 
+  const [editForm, setEditForm] = React.useState<boolean>(false);
+  const showEditForm = React.useCallback(() => setEditForm(true), []);
+  const hideEditForm = React.useCallback(() => setEditForm(false), []);
+
+  const [createForm, setcreateForm] = React.useState<boolean>(false);
+  const showCreateForm = React.useCallback(() => setcreateForm(true), []);
+  const hideCreateForm = React.useCallback(() => setcreateForm(false), []);
+
+  const [editPostForm, setEditPostForm] = React.useState<boolean>(false);
+  const showEditPostForm = React.useCallback(() => setEditPostForm(true), []);
+  const hideEditPostForm = React.useCallback(() => setEditPostForm(false), []);
+
   const [filterValue, setFilterValue] = React.useState<string>("");
   const setFilter = React.useCallback((value) => setFilterValue(value), []);
 
   const [color, setColor] = React.useState<string>("");
   const colorSetter = React.useCallback((value: string) => setColor(value), []);
+
+  const [post, setPost] = React.useState<any>();
+  const postSetter = React.useCallback((values: any) => setPost(values), []);
 
   return (
     <StoreContext.Provider
@@ -70,6 +107,17 @@ export const StoreProvider: React.FC = (props) => {
         setFilter,
         color,
         colorSetter,
+        editForm,
+        showEditForm,
+        hideEditForm,
+        createForm,
+        showCreateForm,
+        hideCreateForm,
+        editPostForm,
+        showEditPostForm,
+        hideEditPostForm,
+        post,
+        postSetter,
       }}
       {...props}
     />

@@ -27,7 +27,7 @@ export const routes: IRoute[] = [
   },
   {
     type: "private",
-    path: "/profile/:id",
+    path: "/users/:id",
     component: Profile,
     exact: true,
   },

@@ -13,4 +13,9 @@ export const useStyles = makeStyles((theme) => ({
     margin: "0 auto",
     marginTop: "5vh",
   },
+  skeletonWrapper: {
+    height: "100vh",
+    width: "95%",
+    margin: "0 auto",
+  },
 }));

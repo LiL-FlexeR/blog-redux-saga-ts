@@ -1,3 +1,5 @@
+import { IPost } from "./posts";
+
 export interface IUser {
   name: string;
   _id: string;
@@ -7,4 +9,5 @@ export interface IUser {
 
 export interface RootState {
   currentUser: IUser;
+  posts: IPost[];
 }

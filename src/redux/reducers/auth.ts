@@ -7,7 +7,10 @@ export const AuthReducer = handleActions(
   {
     [AuthActions.Type.SET_USER]: (state, action) =>
       (state = { ...state, ...action.payload }),
-    [AuthActions.Type.RESET_USER]: (state) => (state = {}),
+    [AuthActions.Type.RESET_USER]: (state) =>
+      (state = {
+        posts: [],
+      }),
   },
   initialState
 );

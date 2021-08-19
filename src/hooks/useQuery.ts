@@ -11,7 +11,7 @@ export const useQuery = <T>() => {
   const fetchData = async (url: string) => {
     setLoading(true);
     try {
-      await instance.get(url).then((res) => setData(res.data));
+      await instance.get(url).then((res) => dataSetter(res.data));
       setError(false);
       setLoading(false);
     } catch (error) {

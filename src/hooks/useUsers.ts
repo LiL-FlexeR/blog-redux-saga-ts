@@ -3,8 +3,8 @@ import { IPost } from "./../types/posts";
 import React from "react";
 import instance from "../utils/instance";
 
-// export const useUsers = <T>(): [(url: string) => void, boolean, T?] => {
-//   const [fetchData, loading, data] = useQuery<T>();
+export const useUsers = () => {
+  const { fetchData, loading, data } = useQuery();
 
-//   return [fetchData, loading, data];
-// };
+  return { fetchData, loading, data };
+};

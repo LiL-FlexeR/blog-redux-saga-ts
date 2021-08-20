@@ -16,8 +16,6 @@ const UserPosts = ({ loading }: { loading: boolean }) => {
 
   const posts = useSelector((state: RootState) => state.posts);
 
-  console.log(posts);
-
   return (
     <Grid container className={classes.tabContainer}>
       <Typography className={classes.title} variant="h3">

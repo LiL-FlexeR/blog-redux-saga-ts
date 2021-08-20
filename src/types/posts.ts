@@ -10,8 +10,13 @@ export interface IPost {
   data?: IPost[] | null;
 }
 
+export interface IPagination {
+  limit: string;
+  skip: string;
+  total: string;
+}
+
 export interface IPostData {
-  title: string;
-  description: string;
-  fullText: string;
+  data: IPost[];
+  pagination: IPagination;
 }

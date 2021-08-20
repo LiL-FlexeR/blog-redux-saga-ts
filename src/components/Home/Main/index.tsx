@@ -8,21 +8,21 @@ import { useFilter } from "../../../hooks/useFilter";
 import { StoreContext } from "../../../utils/context";
 import { usePosts } from "../../../hooks/usePosts";
 import Skelet from "./Skelet";
-import { IPost } from "../../../types/posts";
 
 const Index: React.FC = () => {
   const { fetchData, loading, data, loadingMorePosts } = usePosts();
-  const [posts, setPosts] = React.useState<IPost[] | null>(null);
-  const { filterValue } = React.useContext(StoreContext);
-  const filteredPosts = useFilter(posts, filterValue);
+  const { setFilter, filteredPosts, filter, filterValue } =
+    React.useContext(StoreContext);
 
   React.useEffect(() => {
-    fetchData("/posts");
-  }, []);
+    fetchData(`/posts?search=${filter}`);
+  }, [filter]);
 
   React.useEffect(() => {
-    setPosts(data);
-  }, [, data]);
+    setFilter(data);
+  }, [fetchData]);
+
+  console.log(filteredPosts);
 
   const classes = useStyles();
 
@@ -43,9 +43,9 @@ const Index: React.FC = () => {
           Latest Episodes
         </Typography>
       ) : null}
-      {!loading ? (
+      {!loading && filteredPosts ? (
         <Grid container spacing={2} className={classes.container}>
-          {filteredPosts?.map(
+          {filteredPosts.map(
             (
               {
                 title,

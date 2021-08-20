@@ -1,10 +1,8 @@
+import { IUser } from "./../types/user";
 import { useQuery } from "./useQuery";
-import { IPost } from "./../types/posts";
-import React from "react";
-import instance from "../utils/instance";
 
 export const useUsers = () => {
-  const { fetchData, loading, data } = useQuery();
+  const { fetchData, loading, data } = useQuery<IUser[]>();
 
   return { fetchData, loading, data };
 };

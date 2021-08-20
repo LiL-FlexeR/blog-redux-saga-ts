@@ -7,11 +7,16 @@ export const useQuery = <T>() => {
   const [error, setError] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
   const dataSetter = React.useCallback((value: any) => setData(value), []);
-
   const fetchData = async (url: string) => {
     setLoading(true);
     try {
-      await instance.get(url).then((res) => dataSetter(res.data));
+      await instance.get(url).then((res) => {
+        if (res.data.data) {
+          dataSetter(res.data.data);
+        } else {
+          dataSetter(res.data);
+        }
+      });
       setError(false);
       setLoading(false);
     } catch (error) {

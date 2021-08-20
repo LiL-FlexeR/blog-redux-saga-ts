@@ -11,7 +11,6 @@ const PostEdit = () => {
   const initialState = {
     title: post.title,
     description: post.description,
-    fullText: "",
   };
 
   return (
@@ -35,12 +34,6 @@ const PostEdit = () => {
               onChange={props.handleChange}
               value={props.values.description}
               placeholder="Description"
-            />
-            <TextField
-              name="fullText"
-              onChange={props.handleChange}
-              value={props.values.fullText}
-              placeholder="Full text"
             />
             <Button type="submit">Edit</Button>
           </Form>

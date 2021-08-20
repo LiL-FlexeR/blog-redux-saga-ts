@@ -9,7 +9,7 @@ export const createPost = async (values: IPostData) => {
 
 export const fetchPosts = async (userId: string) => {
   const res = await instance.get(`posts?postedBy=${userId}`);
-  const data = res.data;
+  const data = res.data.data;
   return data;
 };
 

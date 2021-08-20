@@ -1,4 +1,5 @@
 import React from "react";
+import { IPost } from "../types/posts";
 
 interface StoreContextInterface {
   modal: boolean;
@@ -10,8 +11,8 @@ interface StoreContextInterface {
   signUpFrom: boolean;
   showSignUpForm: () => void;
   hideSignUpForm: () => void;
-  filterValue: string;
-  setFilter: (val: string) => void;
+  filteredPosts: IPost[] | null;
+  setFilter: (val: IPost[] | null) => void;
   color: string;
   colorSetter: (val: string) => void;
   editForm: boolean;
@@ -25,6 +26,8 @@ interface StoreContextInterface {
   hideEditPostForm: () => void;
   post: any;
   postSetter: (val: any) => void;
+  filter: string;
+  filterValue: (val: string) => void;
 }
 
 const initialValues = {
@@ -37,7 +40,7 @@ const initialValues = {
   signInFrom: false,
   showSignUpForm: () => {},
   hideSignUpForm: () => {},
-  filterValue: "",
+  filteredPosts: [],
   setFilter: () => {},
   color: "",
   colorSetter: () => {},
@@ -52,6 +55,8 @@ const initialValues = {
   hideEditPostForm: () => {},
   post: {},
   postSetter: () => {},
+  filter: "",
+  filterValue: () => {},
 };
 
 export const StoreContext =
@@ -82,8 +87,19 @@ export const StoreProvider: React.FC = (props) => {
   const showEditPostForm = React.useCallback(() => setEditPostForm(true), []);
   const hideEditPostForm = React.useCallback(() => setEditPostForm(false), []);
 
-  const [filterValue, setFilterValue] = React.useState<string>("");
-  const setFilter = React.useCallback((value) => setFilterValue(value), []);
+  const [filter, setFilterValue] = React.useState<string>("");
+  const filterValue = React.useCallback(
+    (value: string) => setFilterValue(value),
+    []
+  );
+
+  const [filteredPosts, setFilteredPosts] = React.useState<IPost[] | null>(
+    null
+  );
+  const setFilter = React.useCallback(
+    (value: IPost[] | null) => setFilteredPosts(value),
+    []
+  );
 
   const [color, setColor] = React.useState<string>("");
   const colorSetter = React.useCallback((value: string) => setColor(value), []);
@@ -103,7 +119,7 @@ export const StoreProvider: React.FC = (props) => {
         closeModal,
         hideSignInForm,
         hideSignUpForm,
-        filterValue,
+        filteredPosts,
         setFilter,
         color,
         colorSetter,
@@ -118,6 +134,8 @@ export const StoreProvider: React.FC = (props) => {
         hideEditPostForm,
         post,
         postSetter,
+        filter,
+        filterValue,
       }}
       {...props}
     />

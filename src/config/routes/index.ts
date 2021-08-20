@@ -1,10 +1,10 @@
 import { IRoute } from "./../../types/routes";
 import Home from "../../pages/Home";
-import Auth from "../../pages/Admin/Auth";
-import Unauth from "../../pages/Admin/Unauth";
 import Profile from "../../pages/Profile";
 import Post from "../../pages/Post";
 import NotFound from "../../pages/NotFound";
+import Admin from "../../pages/Admin";
+import AuthComponent from "../../components/Admin/Auth";
 
 export const routes: IRoute[] = [
   {
@@ -16,13 +16,13 @@ export const routes: IRoute[] = [
   {
     type: "public",
     path: "/admin",
-    component: Unauth,
+    component: Admin,
     exact: true,
   },
   {
     type: "private",
     path: "/admin/:id",
-    component: Auth,
+    component: AuthComponent,
     exact: true,
   },
   {

@@ -12,6 +12,8 @@ import React from "react";
 import { DebounceInput } from "react-debounce-input";
 import { StoreContext } from "../../utils/context";
 import { RootState } from "../../types/user";
+import { useLocation } from "react-router-dom";
+import { usePosts } from "../../hooks/usePosts";
 
 const SearchTextField = (props: any) => {
   return (
@@ -34,8 +36,9 @@ const Header = () => {
   const currentUser = useSelector(selectCurrentUser);
   const classes = useStyles();
   const dispatch = useDispatch();
+  const location = useLocation();
   const token = localStorage.getItem("token");
-  const { setFilter } = React.useContext(StoreContext);
+  const { filterValue } = React.useContext(StoreContext);
 
   React.useEffect(() => {
     if (token) {
@@ -51,23 +54,25 @@ const Header = () => {
     });
   };
 
-  return (
+  return location.pathname !== "/admin" ? (
     <AppBar className={`header-wrapper ${classes.headerWrapper}`}>
       <Toolbar className={`header-container ${classes.headerContainer}`}>
         <Typography className={`title ${classes.title}`}>Blog</Typography>
-        <Box className={`text-field-container ${classes.box}`}>
-          <DebounceInput
-            debounceTimeout={2000}
-            element={SearchTextField}
-            onFocus={scrollToPosts}
-            className={classes.textField}
-            onChange={(e) => setFilter(e.target.value)}
-          />
-        </Box>
+        {location.pathname === "/" ? (
+          <Box className={`text-field-container ${classes.box}`}>
+            <DebounceInput
+              debounceTimeout={2000}
+              element={SearchTextField}
+              onFocus={scrollToPosts}
+              className={classes.textField}
+              onChange={(e) => filterValue(`${e.target.value}`)}
+            />
+          </Box>
+        ) : null}
         {currentUser._id ? <AuthButtons /> : <UnauthButtons />}
       </Toolbar>
     </AppBar>
-  );
+  ) : null;
 };
 
 export default Header;
